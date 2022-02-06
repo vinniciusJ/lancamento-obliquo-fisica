@@ -1,20 +1,40 @@
-//Implementar equação para descobrir a altura máxima
-function getMaxHeight() {
-    //equation
+class LancamentoObliquo{
+    angulo = 0
+    velocidadeInicial = 0
+    velocidadeInicialY = 0
+    velocidadeX = 0
 
-    return //result
+    constructor(angulo, velocidadeInicial){
+        this.angulo = angulo
+        this.velocidadeInicial = velocidadeInicial
+    }
+
+    static GRAVITY = 10
+
+    getAlturaMax(){
+        // equação
+
+        return 0 //resultado da equação
+    }
+
+    getTempoDeSubida(){
+        //equação
+
+        return 0 //resultado da equação
+    }
+
+    getTempoDeVoo(){
+        // equação
+
+        return 0// resultado da equação
+    }
+
+    getDistanciaPercorrida(){
+        // equação
+
+        return 0// resultado da equação
+    }
+
 }
 
-//Implementar equação para descobrir o tempo de subida e de voo
-function getRiseTime() {
-    //equation
-
-    return //result
-}
-
-//Implementar equação para descobrir a distância percorrida
-function getDistance() {
-    //equation
-
-    return //result
-}
+module.exports = LancamentoObliquo
