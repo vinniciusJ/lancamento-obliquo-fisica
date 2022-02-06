@@ -1,40 +1,43 @@
-const gravity = 9.81
+class LancamentoObliquo{
+    angulo = 0
+    velocidadeInicial = 0
+    velocidadeInicialY = 0
+    velocidadeX = 0
 
-//Decomposição da velocidade inicial em velocidade horizontal (vx) e velocidade vertical inicial(v0y)
-function getVx(v0, angle) {
-    return v0 * Math.cos(DegreesToRadians(angle))
+    constructor(angulo, velocidadeInicial){
+        this.angulo = angulo
+        this.velocidadeInicial = velocidadeInicial
+        
+        this.velocidadeInicialY = this.velocidadeInicial * Math.sin(angulo * (Math.PI / 180)) // voy = vo * sen(α)
+        this.velocidadeX = this.velocidadeInicial * Math.cos(angulo * (Math.PI / 180)) //vx = vo * cos(α)
+    }
+
+    static GRAVIDADE = 10 // Para usar a constante gravidade, referenciamos da seguinte forma: LancamentoObliquo.GRAVIDADE
+
+    getAlturaMax(){
+        //equação
+
+        return //resultado da equação
+    }
+
+    getTempoDeSubida(){
+        //equação
+
+        return 0 //resultado da equação
+    }
+
+    getTempoDeVoo(){
+        // equação
+
+        return 0// resultado da equação
+    }
+
+    getDistanciaPercorrida(){
+        // equação
+
+        return 0// resultado da equação
+    }
+
 }
 
-function getV0y(v0, angle) {
-    return v0 * Math.sin(DegreesToRadians(angle))
-}
-
-//Implementar equação para descobrir a altura máxima
-function getMaxHeight(v0y) {
-    return (v0y ** 2) / (2 * gravity)
-}
-
-//Implementar equação para descobrir o tempo de subida e de voo
-function getRiseTime() {
-    //equation
-
-    return //result
-}
-
-//Implementar equação para descobrir a distância percorrida
-function getDistance() {
-    //equation
-
-    return //result
-}
-
-//Conversão entre radianos e graus
-function DegreesToRadians(degree) {
-    return degree * (Math.PI / 180)
-}
-
-function RadiansToDegrees(radian) {
-    return radian * (180 / Math.PI)
-}
-
-console.log(getMaxHeight(getV0y(18, 50)).toFixed(2))
+module.exports = LancamentoObliquo // exportando a classe LancamentoObliquo
