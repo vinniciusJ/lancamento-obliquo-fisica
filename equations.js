@@ -12,12 +12,12 @@ class LancamentoObliquo{
         this.velocidadeX = this.velocidadeInicial * Math.cos(angulo * (Math.PI / 180)) //vx = vo * cos(α)
     }
 
-    static GRAVIDADE = 10 // Para usar a constante gravidade, referenciamos da seguinte forma: LancamentoObliquo.GRAVIDADE
+    static GRAVIDADE = 9.81 // Para usar a constante gravidade, referenciamos da seguinte forma: LancamentoObliquo.GRAVIDADE
 
     getAlturaMax(){
-        //equação
+        let alturaMax = ((this.velocidadeInicialY ** 2) / (2 * LancamentoObliquo.GRAVIDADE)).toFixed(2)
 
-        return //resultado da equação
+        return alturaMax
     }
 
     getTempoDeSubida(){
