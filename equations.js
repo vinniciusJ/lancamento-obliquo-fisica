@@ -7,9 +7,12 @@ class LancamentoObliquo{
     constructor(angulo, velocidadeInicial){
         this.angulo = angulo
         this.velocidadeInicial = velocidadeInicial
+        
+        this.velocidadeInicialY = this.velocidadeInicial * Math.sin(angulo) // voy = vo * sen(α)
+        this.velocidadeX = this.velocidadeInicial * Math.cos(angulo) //vx = vo * cos(α)
     }
 
-    static GRAVITY = 10
+    static GRAVIDADE = 10 // Para usar a constante gravidade, referenciamos da seguinte forma: LancamentoObliquo.GRAVIDADE
 
     getAlturaMax(){
         // equação
@@ -37,4 +40,4 @@ class LancamentoObliquo{
 
 }
 
-module.exports = LancamentoObliquo
+module.exports = LancamentoObliquo // exportando a classe LancamentoObliquo
