@@ -33,9 +33,9 @@ class LancamentoObliquo{
     }
 
     getDistanciaPercorrida(){
-        // equação
+        const distanciaPercorrida = (this.velocidadeX * this.getTempoDeVoo()).toFixed(2) 
 
-        return 0// resultado da equação
+        return distanciaPercorrida
     }
 
 }
