@@ -9,10 +9,10 @@ function imprimirResultados(lancamentoObliquo){
         Ângulo do lançamento: ${lancamentoObliquo.angulo}°\n
         Velocidade de Inicial: ${lancamentoObliquo.velocidadeInicial}m/s\n
         \n Resultado do lançamento oblíquo: \n
-        Altura máx. alcançada: ${lancamentoObliquo.getAlturaMax()}m\n
-        Tempo de subida: ${lancamentoObliquo.getTempoDeSubida()}s\n
-        Tempo de voo: ${lancamentoObliquo.getTempoDeVoo()}s\n
-        Distância percorrida: ${lancamentoObliquo.getDistanciaPercorrida()}m
+        Altura máx. alcançada: ${lancamentoObliquo.getAlturaMax().toFixed(2)}m\n
+        Tempo de subida: ${lancamentoObliquo.getTempoDeSubida().toFixed(2)}s\n
+        Tempo de voo: ${lancamentoObliquo.getTempoDeVoo().toFixed(2)}s\n
+        Distância percorrida: ${lancamentoObliquo.getDistanciaPercorrida().toFixed(2)}m
     `
 
     // String formatada com o resultado do lançamento ↑
