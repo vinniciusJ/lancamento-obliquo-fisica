@@ -15,25 +15,25 @@ class LancamentoObliquo{
     static GRAVIDADE = 9.81 // Para usar a constante gravidade, referenciamos da seguinte forma: LancamentoObliquo.GRAVIDADE
 
     getAlturaMax(){
-        const alturaMax = ((this.velocidadeInicialY ** 2) / (2 * LancamentoObliquo.GRAVIDADE)).toFixed(2)
+        const alturaMax = ((this.velocidadeInicialY ** 2) / (2 * LancamentoObliquo.GRAVIDADE))
 
         return alturaMax
     }
 
     getTempoDeSubida(){ 
-        const tempoDeSubida = (this.velocidadeInicialY / LancamentoObliquo.GRAVIDADE).toFixed(2) 
+        const tempoDeSubida = (this.velocidadeInicialY / LancamentoObliquo.GRAVIDADE)
 
         return tempoDeSubida 
     }
 
     getTempoDeVoo(){
-        const tempoDeVoo = (parseFloat(this.getTempoDeSubida()) * 2).toFixed(2)
+        const tempoDeVoo = (parseFloat(this.getTempoDeSubida()) * 2)
 
         return tempoDeVoo
     }
 
     getDistanciaPercorrida(){
-        const distanciaPercorrida = (this.velocidadeX * this.getTempoDeVoo()).toFixed(2) 
+        const distanciaPercorrida = (this.velocidadeX * this.getTempoDeVoo())
 
         return distanciaPercorrida
     }
