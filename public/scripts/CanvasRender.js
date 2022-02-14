@@ -9,6 +9,14 @@ class CanvasRender{
         this.canvas.width = this.width
         this.canvas.height = this.height
 
+        const background = new Image()
+
+        background.src = './images/background.png'
+
+        background.addEventListener('load', () => {
+            this.context.drawImage(background, 0, 0)
+        })
+
         document.querySelector('#app').appendChild(this.canvas)
     }
 
@@ -23,10 +31,11 @@ class CanvasRender{
     }
 
     static initialize(){
-        const canvasRender = new CanvasRender(1080, 508)
+        const canvasRender = new CanvasRender(1440, 820)
 
         canvasRender.draw()
     }
 }
+
  
 export default CanvasRender
