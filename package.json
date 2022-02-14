@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/vinniciusJ/lancamento-obliquo-fisica/issues"
   },
-  "homepage": "https://github.com/vinniciusJ/lancamento-obliquo-fisica#readme"
+  "homepage": "https://github.com/vinniciusJ/lancamento-obliquo-fisica#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }

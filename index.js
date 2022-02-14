@@ -1,50 +1,9 @@
-const readline = require('readline') 
-// Importando a biblioteca para poder fazer a leitura dos dados recebidos pelo terminal ↑
-const LancamentoObliquo = require('./equations') 
-// Importando a classe Lancamento Obliquo com todos os metódos necessairos ↑
+const express = require('express')
 
-function imprimirResultados(lancamentoObliquo){
-    const resultado = `
-        \nDados informados: \n
-        Ângulo do lançamento: ${lancamentoObliquo.angulo}°\n
-        Velocidade de Inicial: ${lancamentoObliquo.velocidadeInicial}m/s\n
-        \n Resultado do lançamento oblíquo: \n
-        Altura máx. alcançada: ${lancamentoObliquo.getAlturaMax()}m\n
-        Tempo de subida: ${lancamentoObliquo.getTempoDeSubida()}s\n
-        Tempo de voo: ${lancamentoObliquo.getTempoDeVoo()}s\n
-        Distância percorrida: ${lancamentoObliquo.getDistanciaPercorrida()}m
-    `
+const app = express()
 
-    // String formatada com o resultado do lançamento ↑
-
-    console.log(resultado)
-}
-
-const leitor = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
+app.get('/', (request, response) => {
+    response.sendFile(`${__dirname}/public/index.html`)
 })
 
-// Criando a interface que usaremos para receber os dados ↑
-
-let lancamentoObliquo = new LancamentoObliquo()
-
-// Instanciando o objeto de lancamento obliquo somente para ele nao ficar como null ↑
-
-// Essa função de leitura recebe a mensagem a ser mostrada e uma funbção callback - que será executada assim que o usuário pressionar Enter ↓
-leitor.question('Informe o ângulo do lançamento: ', function(angulo){ 
-    // Pedindo a inserção do primeiro valor (ângulo) ↑
-
-    leitor.question('Informe a velocidade inicial em m/s: ', function(velocidadeInicial){
-        lancamentoObliquo = new LancamentoObliquo(angulo, velocidadeInicial)
-
-        // Instanciando o objeto de lancamento obliquo já com os valores passados pelo usuário
-
-        imprimirResultados(lancamentoObliquo)
-
-        leitor.close()
-    })
-})
-
-
-
+app.listen(5000)
