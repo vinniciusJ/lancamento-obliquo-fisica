@@ -11,12 +11,15 @@ strong {
     font-weight: 500;
 }
 
-.slider-card {
+.card {
     background-color: #FFF;
-    border: 1px solid #353233;
+    border: 2px solid #353233;
     border-radius: 8px;
     width: 320px;
     padding: 10px;
+}
+
+.slider-card {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -57,8 +60,36 @@ strong {
     appearance: none;
     height: 16px;
     width: 16px;
-    background: #15CEE2;
+    background-color: #15CEE2;
     border-radius: 50%;
     cursor: pointer;
     border: none;
+}
+
+.button {
+    width: 144px;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    color: #FFF;
+    cursor: pointer;
+    transition: all .4s;
+}
+
+.clean-button {
+    margin-right: 32px;
+    background-color: #15CEE2;
+}
+
+.clean-button:hover {
+    background-color: #00bbcf;
+}
+
+.shoot-button {
+    background-color: #F78154;
+}
+
+.shoot-button:hover {
+    background-color: #f56b36;
 }
