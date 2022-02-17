@@ -31,7 +31,7 @@ class CanvasRender{
     }
 
     static initialize(){
-        const canvasRender = new CanvasRender(1440, 820)
+        const canvasRender = new CanvasRender(1365, 638)
 
         canvasRender.draw()
     }

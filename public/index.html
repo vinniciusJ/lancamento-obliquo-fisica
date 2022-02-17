@@ -5,11 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="styles/global.css">
+
     <title>Simulação Lançamento Oblíquo</title>
 </head>
 <body>
     <main id="app">
+        <div class="slider-card">
+            <p class="slider-tile"><strong>Velocidade Inicial:</strong> <span id="v0">15</span>m/s</p>
+            <div class="field">
+                <div class="value left">1</div>
+                <input type="range" min="1" max="30" value="15" step="1">
+                <div class="value right">30</div>
+            </div>
+        </div>
 
+        <div class="slider-card">
+            <p class="slider-tile"><strong>Ângulo de inclinação:</strong> <span id="v0">15</span>m/s</p>
+            <div class="field">
+                <div class="value left">1</div>
+                <input type="range" min="1" max="89" value="40" step="1">
+                <div class="value right">89</div>
+            </div>
+        </div>
         <!-- Canvas -->
     </main>
 

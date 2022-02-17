@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+strong {
+    font-weight: 500;
+}
+
+.slider-card {
+    background-color: #FFF;
+    border: 1px solid #353233;
+    border-radius: 8px;
+    width: 320px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.slider-card .slider-tile {
+    margin-bottom: 24px;
+}
+
+.slider-card .field {
+    display: flex;
+    align-items: center;
+}
+
+.slider-card .field .value {
+    color: #15CEE2;
+}
+
+.slider-card .field .left {
+    margin-right: 10px;
+}
+
+.slider-card .field .right {
+    margin-left: 10px;
+}
+
+.slider-card .field input {
+    appearance: none;
+    height: 3px;
+    width: 100%;
+    background-color: #353233;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+}
+
+.slider-card .field input::-webkit-slider-thumb, .slider-card .field input::-moz-range-thumb {
+    appearance: none;
+    height: 16px;
+    width: 16px;
+    background: #15CEE2;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
