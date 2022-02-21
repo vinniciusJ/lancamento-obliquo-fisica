@@ -137,3 +137,10 @@ body{
 .shoot-button:hover {
     background-color: #f56b36;
 }
+
+.cannon {
+    position: absolute;
+
+    bottom: 20px;
+    left: 50px;
+}
