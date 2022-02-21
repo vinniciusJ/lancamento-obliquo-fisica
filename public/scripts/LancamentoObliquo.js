@@ -3,11 +3,15 @@ class LancamentoObliquo{
     velocidadeInicial = 0
     velocidadeInicialY = 0
     velocidadeX = 0
+    xInicial = 0
+    yInicial = 0
 
-    constructor(angulo, velocidadeInicial){
+    constructor(angulo, velocidadeInicial, xInicial, yInicial){
         this.angulo = angulo
         this.velocidadeInicial = velocidadeInicial
-        
+        this.xInicial = xInicial
+        this.yInicial = yInicial
+
         this.velocidadeInicialY = this.velocidadeInicial * Math.sin(angulo * (Math.PI / 180)) // voy = vo * sen(α)
         this.velocidadeX = this.velocidadeInicial * Math.cos(angulo * (Math.PI / 180)) //vx = vo * cos(α)
     }
@@ -15,7 +19,7 @@ class LancamentoObliquo{
     static GRAVIDADE = 9.81 // Para usar a constante gravidade, referenciamos da seguinte forma: LancamentoObliquo.GRAVIDADE
 
     getAlturaMax(){
-        const alturaMax = ((this.velocidadeInicialY ** 2) / (2 * LancamentoObliquo.GRAVIDADE))
+        const alturaMax = this.yInicial + ((this.velocidadeInicialY ** 2) / (2 * LancamentoObliquo.GRAVIDADE))
 
         return alturaMax
     }
@@ -33,11 +37,23 @@ class LancamentoObliquo{
     }
 
     getDistanciaPercorrida(){
-        const distanciaPercorrida = (this.velocidadeX * this.getTempoDeVoo())
+        const distanciaPercorrida = this.xInicial + (this.velocidadeX * this.getTempoDeVoo())
 
         return distanciaPercorrida
     }
 
+    calculateXPosition(time){
+        const x = this.xInicial + this.velocidadeX  * time
+
+        return x
+    }
+
+    calculateYPosition(time){
+        let y = this.yInicial + (this.velocidadeInicialY * time) + (LancamentoObliquo.GRAVIDADE * (time ** 2) / 2)
+        
+        return y
+    }
+
 }
 
-module.exports = LancamentoObliquo // exportando a classe LancamentoObliquo
+export default LancamentoObliquo // exportando a classe LancamentoObliquo
