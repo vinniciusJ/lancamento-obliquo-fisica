@@ -11,6 +11,50 @@ strong {
     font-weight: 500;
 }
 
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+#app{
+    position: relative;
+    
+}
+
+.card{
+    position: absolute;
+}
+
+.card.slider-card:first-of-type{
+    top: 20px;
+    left: 50px;
+}
+
+.card.slider-card:nth-of-type(2){
+    top: 120px;
+    left: 50px;
+}
+
+.buttons-container{
+    position: absolute;
+
+    top: 220px;
+    left: 50px;
+}
+
+.card.info{
+    top: 20px;
+    right: 50px;
+
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
 .card {
     background-color: #FFF;
     border: 2px solid #353233;
