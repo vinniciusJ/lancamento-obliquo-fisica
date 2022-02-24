@@ -5,13 +5,13 @@ class ProjectileMotion{
     static GRAVITY = 9.81
 
     constructor(angle, initialSpeed, initialPositions){
-        this.angle = -angle
+        this.angle = angle
         this.initialSpeed = initialSpeed
 
         this.xInitial = initialPositions.x
         this.yInitial = initialPositions.y
 
-        this.yInitialSpeed = initialSpeed * Math.sin(convertDegreesToRadians(-angle))
+        this.yInitialSpeed = initialSpeed * Math.sin(convertDegreesToRadians(angle))
         this.xInitialSpeed = initialSpeed * Math.cos(convertDegreesToRadians(-angle))
     }
 
@@ -32,7 +32,7 @@ class ProjectileMotion{
     }
 
     getYPositionAt(time){
-        return this.yInitial + this.yInitialSpeed * time - (ProjectileMotion.GRAVITY * (time ** 2) / 2)
+        return this.yInitial - this.yInitialSpeed * time + (ProjectileMotion.GRAVITY * (time ** 2) / 2)
     }
 }
 

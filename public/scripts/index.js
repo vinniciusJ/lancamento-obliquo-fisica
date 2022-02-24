@@ -14,32 +14,25 @@ botaoIniciar.addEventListener('click', event => {
 
     const lancamentoObliquo = new ProjectileMotion(angle, velocidadeInicial, { x: 50, y: 500 })
 
-    let controladorTempo = 1
+    let tempo = 1
 
     const interval = setInterval(() => {
+        
         const [ x, y ] = [  
-            lancamentoObliquo.getXPositionAt(controladorTempo),
-            lancamentoObliquo.getYPositionAt(controladorTempo)
+            lancamentoObliquo.getXPositionAt(tempo),
+            lancamentoObliquo.getYPositionAt(tempo)
         ]
 
         //canvasRender.reset()
         
         canvasRender.draw(context => {
             context.fillStyle = '#000'
-           /* context.strokeStyle = '#000'
-            context.lineWidth = 10
-
-            context.beginPath()
-            context.lineTo((x + 50), (y + 50))
-            context.moveTo((x + 50), (y + 50))
-            context.stroke()*/
-
-            context.fillRect((x + 10), (y + 10), 10, 10)
+            context.fillRect(x, y, 10, 10)
         })
 
-        //console.log(`{ x: ${x}, y: ${y} }`)
+        
 
-        controladorTempo++
+        tempo++
 
     }, 1000)    
 })

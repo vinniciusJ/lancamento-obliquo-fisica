@@ -141,3 +141,10 @@ body{
 canvas{
     background: url('../images/background.png');
 }
+
+.cannon {
+    position: absolute;
+
+    bottom: 20px;
+    left: 50px;
+}
