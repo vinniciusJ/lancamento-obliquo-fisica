@@ -1,11 +1,4 @@
 class LancamentoObliquo{
-    angulo = 0
-    velocidadeInicial = 0
-    velocidadeInicialY = 0
-    velocidadeX = 0
-    xInicial = 0
-    yInicial = 0
-
     constructor(angulo, velocidadeInicial, xInicial, yInicial){
         this.angulo = angulo
         this.velocidadeInicial = velocidadeInicial
@@ -14,12 +7,14 @@ class LancamentoObliquo{
 
         this.velocidadeInicialY = this.velocidadeInicial * Math.sin(angulo * (Math.PI / 180)) // voy = vo * sen(α)
         this.velocidadeX = this.velocidadeInicial * Math.cos(angulo * (Math.PI / 180)) //vx = vo * cos(α)
+
+        this.velocidadeY = this.velocidadeInicialY
     }
 
     static GRAVIDADE = 9.81 // Para usar a constante gravidade, referenciamos da seguinte forma: LancamentoObliquo.GRAVIDADE
 
     getAlturaMax(){
-        const alturaMax = this.yInicial + ((this.velocidadeInicialY ** 2) / (2 * LancamentoObliquo.GRAVIDADE))
+        const alturaMax = (this.velocidadeInicialY ** 2) / (2 * LancamentoObliquo.GRAVIDADE)
 
         return alturaMax
     }
@@ -37,21 +32,32 @@ class LancamentoObliquo{
     }
 
     getDistanciaPercorrida(){
-        const distanciaPercorrida = this.xInicial + (this.velocidadeX * this.getTempoDeVoo())
+        const distanciaPercorrida = this.velocidadeX * this.getTempoDeVoo()
 
         return distanciaPercorrida
     }
 
-    calculateXPosition(time){
-        const x = this.xInicial + this.velocidadeX  * time
+    calcularPosicaoX(tempo){
+        tempo -= this.getTempoDeVoo()
 
-        return x
+        console.log(`
+            xInicial: ${this.xInicial},
+            velocidadeX: ${this.velocidadeX},
+            tempo: ${tempo},
+            posicaoX: ${this.xInicial + this.velocidadeX * tempo}
+        `)
+        
+
+        return this.xInicial + this.velocidadeX * tempo
     }
 
-    calculateYPosition(time){
-        let y = this.yInicial + (this.velocidadeInicialY * time) + (LancamentoObliquo.GRAVIDADE * (time ** 2) / 2)
-        
-        return y
+    calcularPosicaoY(tempo){
+        tempo -= this.getTempoDeVoo()
+
+        const yAtual =  this.yInicial - this.velocidadeY * tempo + (LancamentoObliquo.GRAVIDADE * (tempo ** 2 ) / 2)
+    
+
+        return yAtual
     }
 
 }

@@ -17,19 +17,7 @@ class CanvasRender{
         this.context.clearRect(0, 0, this.width, this.height)
     }
 
-    drawnBackground(){
-        const background = new Image()
-
-        background.src = './images/background.png'
-
-        background.addEventListener('load', () => {
-            this.context.drawImage(background, 0, 0)
-        })
-    }
-
     draw(drawFn){
-        this.drawnBackground()
-
         drawFn(this.context)
     }
 

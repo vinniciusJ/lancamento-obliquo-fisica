@@ -137,3 +137,7 @@ body{
 .shoot-button:hover {
     background-color: #f56b36;
 }
+
+canvas{
+    background: url('../images/background.png');
+}

@@ -1,4 +1,5 @@
 import CanvasRender from './CanvasRender.js'
+import ProjectileMotion from './equation.js'
 import LancamentoObliquo from './LancamentoObliquo.js'
 
 const botaoIniciar = document.querySelector('.shoot-button')
@@ -11,33 +12,34 @@ botaoIniciar.addEventListener('click', event => {
     const angle = inputAngulo.value
     const velocidadeInicial = inputVelocidadeInicial.value
 
-    const lancamentoObliquo = new LancamentoObliquo(angle, velocidadeInicial, 50, -620)
+    const lancamentoObliquo = new ProjectileMotion(angle, velocidadeInicial, { x: 50, y: 500 })
 
-    let controladorTempo = 0
-    const positions = [ [ 50, -620 ] ]
+    let controladorTempo = 1
 
     const interval = setInterval(() => {
         const [ x, y ] = [  
-            lancamentoObliquo.calculateXPosition(controladorTempo),
-            lancamentoObliquo.calculateYPosition(controladorTempo)
+            lancamentoObliquo.getXPositionAt(controladorTempo),
+            lancamentoObliquo.getYPositionAt(controladorTempo)
         ]
 
         //canvasRender.reset()
         
         canvasRender.draw(context => {
             context.fillStyle = '#000'
-            context.fillRect(50, 100, 10, 10)
+           /* context.strokeStyle = '#000'
+            context.lineWidth = 10
+
+            context.beginPath()
+            context.lineTo((x + 50), (y + 50))
+            context.moveTo((x + 50), (y + 50))
+            context.stroke()*/
+
+            context.fillRect((x + 10), (y + 10), 10, 10)
         })
 
-        positions.push([ x, y ])
+        //console.log(`{ x: ${x}, y: ${y} }`)
 
         controladorTempo++
 
-    }, 1000)
-
-    setTimeout(() => {        
-        //clearInterval(interval)
-
-    }, lancamentoObliquo.getTempoDeVoo() * 1000)
-    
+    }, 1000)    
 })
