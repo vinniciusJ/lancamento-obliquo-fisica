@@ -11,26 +11,28 @@ startButton.addEventListener('click', event => {
     const angle = angleInput.value
     const initialSpeed = initialSpeedInput.value
 
-    const projectileMotion = new ProjectileMotion(30, 30, { x: 0, y: 0 })
+    const projectileMotion = new ProjectileMotion(angle, initialSpeed, { x: 50, y: 0 })
 
     let time = 0
 
     const interval = setInterval(() => {
         const { x, y } = projectileMotion.getPositionAtTime(time)
         
-        const rectCoords = { x: x, y: (canvasRender.height - y)}
+        const rectCoords = { x: x * 10, y: (canvasRender.height - (y * 10))}
 
 
-        console.table({ x, y })
+        console.table([
+            (rectCoords.x * 10), (rectCoords.y * 10)
+        ])
 
         canvasRender.draw(context => {
-            context.fillStyle = '#000'
-            context.fillRect(rectCoords.x, rectCoords.y, 10, 10)
+            context.beginPath();
+            context.arc(rectCoords.x, rectCoords.y, 10, 0, Math.PI * 2);
+            context.closePath();
+            context.fill();
         })
 
         time++
     }, 1000)   
 
 })
-
-startButton.click()
