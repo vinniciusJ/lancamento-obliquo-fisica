@@ -9,7 +9,6 @@ class CanvasRender{
         this.canvas.width = this.width
         this.canvas.height = this.height
 
-
         document.querySelector('#app').appendChild(this.canvas)
     }
 

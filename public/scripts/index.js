@@ -1,38 +1,36 @@
 import CanvasRender from './CanvasRender.js'
 import ProjectileMotion from './equation.js'
-import LancamentoObliquo from './LancamentoObliquo.js'
 
-const botaoIniciar = document.querySelector('.shoot-button')
-const inputAngulo = document.querySelector('#input-angle')
-const inputVelocidadeInicial = document.querySelector("#input-v0")
+const startButton = document.querySelector('.shoot-button')
+const angleInput = document.querySelector('#input-angle')
+const initialSpeedInput = document.querySelector("#input-v0")
 
 const canvasRender = CanvasRender.initialize()
 
-botaoIniciar.addEventListener('click', event => {
-    const angle = inputAngulo.value
-    const velocidadeInicial = inputVelocidadeInicial.value
+startButton.addEventListener('click', event => {
+    const angle = angleInput.value
+    const initialSpeed = initialSpeedInput.value
 
-    const lancamentoObliquo = new ProjectileMotion(angle, velocidadeInicial, { x: 50, y: 500 })
+    const projectileMotion = new ProjectileMotion(30, 30, { x: 0, y: 0 })
 
-    let tempo = 1
+    let time = 0
 
     const interval = setInterval(() => {
+        const { x, y } = projectileMotion.getPositionAtTime(time)
         
-        const [ x, y ] = [  
-            lancamentoObliquo.getXPositionAt(tempo),
-            lancamentoObliquo.getYPositionAt(tempo)
-        ]
+        const rectCoords = { x: x, y: (canvasRender.height - y)}
 
-        //canvasRender.reset()
-        
+
+        console.table({ x, y })
+
         canvasRender.draw(context => {
             context.fillStyle = '#000'
-            context.fillRect(x, y, 10, 10)
+            context.fillRect(rectCoords.x, rectCoords.y, 10, 10)
         })
 
-        
+        time++
+    }, 1000)   
 
-        tempo++
-
-    }, 1000)    
 })
+
+startButton.click()

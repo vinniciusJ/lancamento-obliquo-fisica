@@ -1,5 +1,5 @@
 const convertRadiansToDegrees = radians => radians * 180 / Math.PI
-const convertDegreesToRadians = degrees => degrees * Math.PI / 180
+const convertDegreesToRadians = degrees => degrees * (Math.PI / 180)
 
 class ProjectileMotion{
     static GRAVITY = 9.81
@@ -11,8 +11,12 @@ class ProjectileMotion{
         this.xInitial = initialPositions.x
         this.yInitial = initialPositions.y
 
+        console.log(initialSpeed * Math.sin(convertDegreesToRadians(angle)))
+
         this.yInitialSpeed = initialSpeed * Math.sin(convertDegreesToRadians(angle))
-        this.xInitialSpeed = initialSpeed * Math.cos(convertDegreesToRadians(-angle))
+        this.xInitialSpeed = initialSpeed * Math.cos(convertDegreesToRadians(angle))
+
+        console.log(`yInitial pt1: ${this.yInitialSpeed}`)        
     }
 
     getFlightTime(){
@@ -27,13 +31,13 @@ class ProjectileMotion{
         return (this.yInitialSpeed ** 2) / 2 * ProjectileMotion.GRAVITY
     }
 
-    getXPositionAt(time){
-        return this.xInitial + this.xInitialSpeed * time
+    getPositionAtTime(time){
+        return {
+            x: this.xInitialSpeed * time,
+            y: this.yInitialSpeed * time - .5 * (ProjectileMotion.GRAVITY * Math.pow(time, 2))
+        }
     }
 
-    getYPositionAt(time){
-        return this.yInitial - this.yInitialSpeed * time + (ProjectileMotion.GRAVITY * (time ** 2) / 2)
-    }
 }
 
 export default ProjectileMotion

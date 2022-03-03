@@ -40,14 +40,6 @@ class LancamentoObliquo{
     calcularPosicaoX(tempo){
         tempo -= this.getTempoDeVoo()
 
-        console.log(`
-            xInicial: ${this.xInicial},
-            velocidadeX: ${this.velocidadeX},
-            tempo: ${tempo},
-            posicaoX: ${this.xInicial + this.velocidadeX * tempo}
-        `)
-        
-
         return this.xInicial + this.velocidadeX * tempo
     }
 
