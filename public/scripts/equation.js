@@ -4,19 +4,12 @@ const convertDegreesToRadians = degrees => degrees * (Math.PI / 180)
 class ProjectileMotion{
     static GRAVITY = 9.81
 
-    constructor(angle, initialSpeed, initialPositions){
+    constructor(angle, initialSpeed){
         this.angle = angle
         this.initialSpeed = initialSpeed
 
-        this.xInitial = initialPositions.x
-        this.yInitial = initialPositions.y
-
-        console.log(initialSpeed * Math.sin(convertDegreesToRadians(angle)))
-
         this.yInitialSpeed = initialSpeed * Math.sin(convertDegreesToRadians(angle))
-        this.xInitialSpeed = initialSpeed * Math.cos(convertDegreesToRadians(angle))
-
-        console.log(`yInitial pt1: ${this.yInitialSpeed}`)        
+        this.xInitialSpeed = initialSpeed * Math.cos(convertDegreesToRadians(angle))      
     }
 
     getFlightTime(){
@@ -28,10 +21,12 @@ class ProjectileMotion{
     }
 
     getMaxHeight(){
-        return (this.yInitialSpeed ** 2) / 2 * ProjectileMotion.GRAVITY
+        return Math.pow(this.yInitialSpeed, 2) / (2 * ProjectileMotion.GRAVITY)
     }
 
     getPositionAtTime(time){
+        time = time / 10
+
         return {
             x: this.xInitialSpeed * time,
             y: this.yInitialSpeed * time - .5 * (ProjectileMotion.GRAVITY * Math.pow(time, 2))
