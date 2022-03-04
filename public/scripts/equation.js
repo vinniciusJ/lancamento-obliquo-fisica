@@ -24,13 +24,26 @@ class ProjectileMotion{
         return Math.pow(this.yInitialSpeed, 2) / (2 * ProjectileMotion.GRAVITY)
     }
 
+    getSpeedAtTime(time){
+        return {
+            vx: this.xInitialSpeed,
+            vy: this.yInitialSpeed - ProjectileMotion.GRAVITY * time,
+        }
+    }
+
     getPositionAtTime(time){
         time = time / 10
 
-        return {
+        const data = {
             x: this.xInitialSpeed * time,
             y: this.yInitialSpeed * time - .5 * (ProjectileMotion.GRAVITY * Math.pow(time, 2))
         }
+
+        if(Number.isInteger(time)){
+            data.time = time
+        }
+
+        return data
     }
 
 }

@@ -22,10 +22,32 @@ const showProjectileTrajectory = ({ x, y }) => canvasRender.draw(context => {
     context.fill();
 })
 
+const showCoordsAtTime = (projectileMotion, time) => canvasRender.draw(context => {
+    const speedData = projectileMotion.getSpeedAtTime(time)
+    const positionData = projectileMotion.getPositionAtTime(time)
+
+    const text = `
+    vx: ${speedData.vx.toFixed(2)} \n
+    vy: ${speedData.vy.toFixed(2)} \n
+    x: ${positionData.x.toFixed(2)} \n
+    y: ${positionData.y.toFixed(2)} \n
+    t: ${time}
+    `
+    
+    context.font = '15px Ubuntu'
+    context.fillStyle = 'red'
+    context.textAlign = 'left'
+    context.fillText(text, positionData.x * 10, (canvasRender.height - 100) - (positionData.y * 10))
+})
+
 const createProjectileTrajectory = (projectileMotion, time = 0) => {
     const interval = setInterval(() => {
-        const coords = projectileMotion.getPositionAtTime(time)
-        const rectCoords = { x: coords.x * 10, y: ((canvasRender.height - 100) - (coords.y * 10)) }
+        const data = projectileMotion.getPositionAtTime(time)
+        const rectCoords = { x: data.x * 10, y: ((canvasRender.height - 100) - (data.y * 10)) }
+
+        if(!!data.time){
+            showCoordsAtTime(projectileMotion, time)
+        }
 
         showProjectileTrajectory(rectCoords)
 
