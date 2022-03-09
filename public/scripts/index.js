@@ -22,34 +22,32 @@ const showProjectileTrajectory = ({ x, y }) => canvasRender.draw(context => {
     context.fill();
 })
 
-const showCoordsAtTime = (projectileMotion, time) => canvasRender.draw(context => {
-    const speedData = projectileMotion.getSpeedAtTime(time)
-    const positionData = projectileMotion.getPositionAtTime(time)
-
-    const text = `
-    vx: ${speedData.vx.toFixed(2)} \n
-    vy: ${speedData.vy.toFixed(2)} \n
-    x: ${positionData.x.toFixed(2)} \n
-    y: ${positionData.y.toFixed(2)} \n
-    t: ${time}
-    `
-    
-    context.font = '15px Ubuntu'
-    context.fillStyle = 'red'
-    context.textAlign = 'left'
-    context.fillText(text, positionData.x * 10, (canvasRender.height - 100) - (positionData.y * 10))
+const drawProjectileParable = ({ sx, sy, ex, ey }) => canvasRender.draw(context => {
+    context.beginPath()
+    context.moveTo(sx, sy)
+    context.lineTo(ex, ey)
+    context.stroke()
 })
 
 const createProjectileTrajectory = (projectileMotion, time = 0) => {
+    const points = [{ x: 0, y: 538 }]
+
     const interval = setInterval(() => {
-        const data = projectileMotion.getPositionAtTime(time)
+        const data = projectileMotion.getPositionAtTime(time + 1)
         const rectCoords = { x: data.x * 10, y: ((canvasRender.height - 100) - (data.y * 10)) }
 
-        if(!!data.time){
-            showCoordsAtTime(projectileMotion, time)
+        const lineCoords = {
+            sx: points[time].x,
+            sy: points[time].y,
+            ex: rectCoords.x,
+            ey: rectCoords.y
         }
 
-        showProjectileTrajectory(rectCoords)
+        console.table(lineCoords)
+        //showProjectileTrajectory(rectCoords)
+        drawProjectileParable(lineCoords)
+
+        points.push(rectCoords)
 
         time++
     }, 100)
