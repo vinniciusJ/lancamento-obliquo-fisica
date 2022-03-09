@@ -17,7 +17,7 @@ const canvasRender = CanvasRender.initialize()
 
 const showProjectileTrajectory = ({ x, y }) => canvasRender.draw(context => {
     context.beginPath();
-    context.arc(x, y, 5, 0, Math.PI * 2);
+    context.arc(x, y, 2.5, 0, Math.PI * 2);
     context.closePath();
     context.fill();
 })
@@ -34,7 +34,7 @@ const createProjectileTrajectory = (projectileMotion, time = 0) => {
 
     const interval = setInterval(() => {
         const data = projectileMotion.getPositionAtTime(time + 1)
-        const rectCoords = { x: data.x * 10, y: ((canvasRender.height - 100) - (data.y * 10)) }
+        const rectCoords = { x: data.x * 15, y: ((canvasRender.height - 100) - (data.y * 15)) }
 
         const lineCoords = {
             sx: points[time].x,
@@ -43,8 +43,7 @@ const createProjectileTrajectory = (projectileMotion, time = 0) => {
             ey: rectCoords.y
         }
 
-        console.table(lineCoords)
-        //showProjectileTrajectory(rectCoords)
+        showProjectileTrajectory(rectCoords)
         drawProjectileParable(lineCoords)
 
         points.push(rectCoords)
