@@ -1,6 +1,4 @@
-const convertRadiansToDegrees = radians => radians * 180 / Math.PI
 const convertDegreesToRadians = degrees => degrees * (Math.PI / 180)
-
 class ProjectileMotion{
     static GRAVITY = 9.81
 
@@ -34,16 +32,10 @@ class ProjectileMotion{
     getPositionAtTime(time){
         time = time / 10
 
-        const data = {
+        return {
             x: this.xInitialSpeed * time,
             y: this.yInitialSpeed * time - .5 * (ProjectileMotion.GRAVITY * Math.pow(time, 2))
         }
-
-        if(Number.isInteger(time)){
-            data.time = time
-        }
-
-        return data
     }
 
 }

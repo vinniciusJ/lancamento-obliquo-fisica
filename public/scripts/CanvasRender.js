@@ -1,4 +1,6 @@
-class CanvasRender{
+export const CANVAS_WIDTH = 1365
+export const CANVAS_HEIGHT = 638
+class CanvasRenderer{
     constructor(width, height){
         this.width = width
         this.height = height
@@ -9,7 +11,10 @@ class CanvasRender{
         this.canvas.width = this.width
         this.canvas.height = this.height
 
-        this.context.translate(125, 0)
+        this.context.translate(120, 0)
+
+        this.context.fillStyle = '#000'
+        this.context.strokeStyle = '#000'
 
         document.querySelector('#app').appendChild(this.canvas)
     }
@@ -23,14 +28,10 @@ class CanvasRender{
     }
 
     static initialize(){
-        const canvasRender = new CanvasRender(1365, 638)
-
-        canvasRender.draw(() => {})
-
-        return canvasRender
+        return new CanvasRenderer(CANVAS_WIDTH, CANVAS_HEIGHT)
     }
     
 }
 
- 
-export default CanvasRender
+
+export default CanvasRenderer
