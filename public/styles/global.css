@@ -25,42 +25,77 @@ body{
     
 }
 
-.card{
+.card {
     position: absolute;
+    background-color: #FFF;
+    border: 2px solid #353233;
+    border-radius: 8px;
+    width: 320px;
+    padding: 16px;
 }
 
-.card.slider-card:first-of-type{
-    top: 20px;
-    left: 50px;
+.card.slider-card:first-of-type {
+    top: 24px;
+    left: 48px;
 }
 
-.card.slider-card:nth-of-type(2){
-    top: 120px;
-    left: 50px;
+.card.slider-card:nth-of-type(2) {
+    top: 136px;
+    left: 48px;
 }
 
-.buttons-container{
+.buttons-container {
     position: absolute;
 
-    top: 220px;
-    left: 50px;
+    top: 256px;
+    left: 48px;
 }
 
-.card.info{
-    top: 20px;
-    right: 50px;
+.card.info {
+    top: 24px;
+    right: 48px;
 
     display: flex;
     flex-direction: column;
     gap: .5rem;
 }
 
-.card {
+.card.info-time {
+    top: 148px;
+    right: 48px;
+}
+
+.info-time .scroll-container {
+    height: 144px;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-color: #15CEE2 #FFF;
+}
+
+.info-time .scroll-container::-webkit-scrollbar-thumb {
+    background: #15CEE2;
+    border-radius: 10px;
+}
+
+.info-time .scroll-container::-webkit-scrollbar-track {
     background-color: #FFF;
-    border: 2px solid #353233;
+}
+
+.info-time .time-title {
+    background-color: #15CEE2;
+    color: #FFF;
+    padding: 4px;
     border-radius: 8px;
-    width: 320px;
-    padding: 10px;
+    display: inline-block;
+    margin: 8px 0;
+}
+
+.info-time p {
+    margin-bottom: 4px;
+}
+
+.info-time p:last-of-type {
+    margin-bottom: 16px;
 }
 
 .slider-card {
@@ -101,7 +136,6 @@ body{
 }
 
 .slider-card .field input::-webkit-slider-thumb, .slider-card .field input::-moz-range-thumb {
-    appearance: none;
     height: 16px;
     width: 16px;
     background-color: #15CEE2;
