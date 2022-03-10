@@ -29,8 +29,10 @@ class ProjectileMotion{
         }
     }
 
-    getPositionAtTime(time){
-        time = time / 10
+    getPositionAtTime(time, options = {}){
+        if(!options.finalTime){
+            time = time / 10
+        }
 
         return {
             x: this.xInitialSpeed * time,

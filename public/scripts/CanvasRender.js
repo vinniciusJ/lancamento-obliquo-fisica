@@ -19,6 +19,10 @@ class CanvasRenderer{
         document.querySelector('#app').appendChild(this.canvas)
     }
 
+    clear({ x, y, width, height }){
+        this.context.clearRect(x, y, width, height)
+    }
+
     reset(){
         this.context.clearRect(0, 0, this.width, this.height)
     }
