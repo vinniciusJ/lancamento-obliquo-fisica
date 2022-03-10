@@ -15,3 +15,8 @@ inputAngle.oninput = (() => {
 
     cannonBarrel.setAttribute('transform', `rotate(-${value},17.995497,44.510739)`)
 })
+
+document.addEventListener("DOMContentLoaded", () => {
+    v0.textContent = inputV0.value
+    angle.textContent = inputAngle.value
+})
