@@ -103,6 +103,28 @@ const showProjectileAtLastPosition = projectileMotion => {
     localStorage.setItem('current-trajectory-coords', JSON.stringify(trajectoryCoords))
 }
 
+const showPropsPerSecond = (x, y, vx, vy, time) => {
+    const scrollContainer = document.querySelector('.scroll-container')
+    const container = document.querySelector('.info-time')
+
+    container.style.display = 'block'
+
+    scrollContainer.innerHTML += `<div class="time">
+        <div class="time-title">Tempo: <span class="time-name">${time}</span>s</div>
+        <p></p><strong>X:</strong> <span class="time-X">${x.toFixed(2)}</span> metros</p>
+        <p></p><strong>Y:</strong> <span class="time-Y">${y.toFixed(2)}</span> metros</p>
+        <p></p><strong>Vx:</strong> <span class="time-Vx">${vx.toFixed(2)}</span> m/s</p>
+        <p></p><strong>Vy:</strong> <span class="time-Vy">${vy.toFixed(2)}</span> m/s</p>
+        </div>`
+}
+
+const cleanPropsOfLastTrajectory = () => {
+    const scrollContainer = document.querySelector('.scroll-container')
+
+    scrollContainer.innerHTML = ''
+
+}
+
 const createProjectileTrajectory = (projectileMotion, time = 0) => {
     const coords = [{ x: 0, y: canvasRenderer.height - 90 }]
     const trajectoryCoords = [ ]
@@ -110,6 +132,13 @@ const createProjectileTrajectory = (projectileMotion, time = 0) => {
     const interval = setInterval(() => {
         const data = projectileMotion.getPositionAtTime(time + 1)
         const rectCoords = { x: data.x * 15, y: ((canvasRenderer.height - 90) - (data.y * 15)) }
+
+        if(Number.isInteger((time + 1) / 10)) {
+            const { x, y } = data
+            const { vx, vy} = projectileMotion.getSpeedAtTime(time + 1)
+
+            showPropsPerSecond(x, y, vx, vy, time + 1)
+        }
 
         const currentTrajectory = {
             sx: coords[time].x,
@@ -145,6 +174,8 @@ const showResults = projectileMotion => {
 }
 
 startButton.addEventListener('click', event => {
+    cleanPropsOfLastTrajectory()
+    
     const angle = angleInput.value
     const initialSpeed = initialSpeedInput.value
 

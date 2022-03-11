@@ -63,6 +63,8 @@ body{
 .card.info-time {
     top: 148px;
     right: 48px;
+
+    display: none;
 }
 
 .info-time .scroll-container {

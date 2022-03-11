@@ -29,7 +29,7 @@ class ProjectileMotion{
         }
     }
 
-    getPositionAtTime(time, options = {}){
+    getPositionAtTime(time, options = {}){        
         if(!options.finalTime){
             time = time / 10
         }
