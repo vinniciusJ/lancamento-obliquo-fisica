@@ -6,11 +6,17 @@ const cleanButton = document.querySelector('.clean-button')
 
 const angleInput = document.querySelector('#input-angle')
 const initialSpeedInput = document.querySelector("#input-v0")
+const gravityInput = document.querySelector('.contexts')
 
 const resultLabels = {
     maxHeight: document.querySelector('#max-height'),
     maxDistance: document.querySelector('#max-distance'),
     flightTime: document.querySelector('#flight-time')
+}
+
+const speedLabels = {
+    vx: document.querySelector('#vx-arrow'),
+    v0y: document.querySelector('#v0y-arrow')
 }
 
 const launchedProjectiles = []
@@ -103,6 +109,34 @@ const showProjectileAtLastPosition = projectileMotion => {
     localStorage.setItem('current-trajectory-coords', JSON.stringify(trajectoryCoords))
 }
 
+const showPropsPerSecond = (x, y, vx, vy, time) => {
+    const scrollContainer = document.querySelector('.scroll-container')
+    const container = document.querySelector('.info-time')
+
+    container.style.display = 'block'
+
+    scrollContainer.innerHTML += `<div class="time">
+        <div class="time-title">Tempo: <span class="time-name">${time / 10}</span>s</div>
+        <p></p><strong>X:</strong> <span class="time-X">${x.toFixed(2)}</span> metros</p>
+        <p></p><strong>Y:</strong> <span class="time-Y">${y.toFixed(2)}</span> metros</p>
+        <p></p><strong>Vx:</strong> <span class="time-Vx">${vx.toFixed(2)}</span> m/s</p>
+        <p></p><strong>Vy:</strong> <span class="time-Vy">${vy.toFixed(2)}</span> m/s</p>
+        </div>
+    `
+}
+
+const cleanPropsOfLastTrajectory = () => {
+    const scrollContainer = document.querySelector('.scroll-container')
+
+    scrollContainer.innerHTML = ''
+}
+
+const hideTimePropsCard = () => {
+    const container = document.querySelector('.info-time')
+
+    container.style.display = 'none'
+}
+
 const createProjectileTrajectory = (projectileMotion, time = 0) => {
     const coords = [{ x: 0, y: canvasRenderer.height - 90 }]
     const trajectoryCoords = [ ]
@@ -110,6 +144,13 @@ const createProjectileTrajectory = (projectileMotion, time = 0) => {
     const interval = setInterval(() => {
         const data = projectileMotion.getPositionAtTime(time + 1)
         const rectCoords = { x: data.x * 15, y: ((canvasRenderer.height - 90) - (data.y * 15)) }
+
+        if(Number.isInteger((time + 1) / 10)) {
+            const { x, y } = data
+            const { vx, vy} = projectileMotion.getSpeedAtTime(time + 1)
+
+            showPropsPerSecond(x, y, vx, vy, time + 1)
+        }
 
         const currentTrajectory = {
             sx: coords[time].x,
@@ -142,17 +183,30 @@ const showResults = projectileMotion => {
     resultLabels.maxHeight.textContent = projectileMotion.getMaxHeight().toFixed(2)
     resultLabels.maxDistance.textContent = projectileMotion.getMaxDistance().toFixed(2)
     resultLabels.flightTime.textContent = projectileMotion.getFlightTime().toFixed(2)
+
+    speedLabels.vx.textContent = projectileMotion.xInitialSpeed.toFixed(2)
+    speedLabels.v0y.textContent = projectileMotion.yInitialSpeed.toFixed(2)
 }
 
+const resetLabels = () => {
+    const labels = { ...speedLabels, ...resultLabels }
+
+    Object.keys(labels).map(key => {
+        labels[key].textContent = 0
+    })
+}
 
 startButton.addEventListener('click', event => {
     const angle = angleInput.value
     const initialSpeed = initialSpeedInput.value
+    const gravity = gravityInput.options[gravityInput.selectedIndex].value
 
-    const projectileMotion = new ProjectileMotion(angle, initialSpeed)
-    const interval = createProjectileTrajectory(projectileMotion) 
+    const projectileMotion = new ProjectileMotion(angle, initialSpeed, gravity)
 
+    cleanPropsOfLastTrajectory()
     showResults(projectileMotion)
+
+    const animation = createProjectileTrajectory(projectileMotion)
 
     startButton.disabled = true
 
@@ -162,7 +216,7 @@ startButton.addEventListener('click', event => {
         startButton.disabled = false
         launchedProjectiles.push(JSON.parse(localStorage.getItem('current-trajectory-coords')))
 
-        clearInterval(interval)
+        clearInterval(animation)
     }, projectileMotion.getFlightTime() * 1000)
 })
 
@@ -170,4 +224,7 @@ cleanButton.addEventListener('click', () => {
     launchedProjectiles.length = 0
 
     canvasRenderer.reset()
+
+    resetLabels()
+    hideTimePropsCard()
 })

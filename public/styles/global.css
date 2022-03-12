@@ -11,7 +11,7 @@ strong {
     font-weight: 500;
 }
 
-body{
+body {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,7 +20,7 @@ body{
     height: 100vh;
 }
 
-#app{
+#app {
     position: relative;
     
 }
@@ -31,24 +31,56 @@ body{
     border: 2px solid #353233;
     border-radius: 8px;
     width: 320px;
+}
+
+.card.context-card {
+    top: 24px;
+    left: 48px;
     padding: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: .5rem;
+}
+
+.card.context-card .contexts {
+    color: #FFF;
+    background-color: #15CEE2;
+    border: none;
+
+    padding: .25rem;
+    border-radius: .25rem;
+}
+
+.card.context-card .contexts strong{
+    font-weight: 800;
+}
+
+.card.slider-card {
+    padding: 8px;
 }
 
 .card.slider-card:first-of-type {
-    top: 24px;
+    top: 88px;
     left: 48px;
 }
 
 .card.slider-card:nth-of-type(2) {
-    top: 136px;
+    top: 182px;
     left: 48px;
 }
 
 .buttons-container {
     position: absolute;
 
-    top: 256px;
+    top: 280px;
     left: 48px;
+}
+
+.card.info, .card.info-time {
+    padding: 16px;
 }
 
 .card.info {
@@ -61,12 +93,14 @@ body{
 }
 
 .card.info-time {
-    top: 148px;
+    top: 146px;
     right: 48px;
+
+    display: none;
 }
 
 .info-time .scroll-container {
-    height: 144px;
+    height: 136px;
     overflow: hidden;
     overflow-y: scroll;
     scrollbar-color: #15CEE2 #FFF;
@@ -87,7 +121,7 @@ body{
     padding: 4px;
     border-radius: 8px;
     display: inline-block;
-    margin: 8px 0;
+    margin: 4px 0;
 }
 
 .info-time p {
@@ -181,5 +215,47 @@ canvas{
 
     bottom: 20px;
     left: 50px;
+}
 
+.speed-arrows-container{
+    position: absolute;
+    bottom: 20px;
+    left: 50px;
+}
+
+.speed-arrows-container .arrow{
+    position: absolute;
+}
+
+.speed-arrows-container .arrow p{
+    position: absolute;
+    background-color: #FFFFFF;
+    padding: .25rem;
+
+    font-size: 75%;
+
+    width: 6rem;
+}
+
+.speed-arrows-container .vx.arrow p{
+    bottom: -10px;
+    
+}
+
+.speed-arrows-container .vy.arrow p{
+    left: -105px;
+}
+
+.speed-arrows-container .vx.arrow{
+    bottom: 33.5px;
+    left: 45px;
+}
+
+.speed-arrows-container .vy.arrow{
+    bottom: 62.5px;
+    left: 10px;
+}
+
+.speed-arrows-container .vx.arrow img{
+    transform: rotate(90deg);
 }
