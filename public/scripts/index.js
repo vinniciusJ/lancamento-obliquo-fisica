@@ -1,5 +1,5 @@
 import CanvasRenderer from './CanvasRender.js'
-import ProjectileMotion from './equation.js'
+import ProjectileMotion from './ProjectileMotion.js'
 
 const startButton = document.querySelector('.shoot-button')
 const cleanButton = document.querySelector('.clean-button')
@@ -144,23 +144,22 @@ const showResults = projectileMotion => {
     resultLabels.flightTime.textContent = projectileMotion.getFlightTime().toFixed(2)
 }
 
+
 startButton.addEventListener('click', event => {
     const angle = angleInput.value
     const initialSpeed = initialSpeedInput.value
 
     const projectileMotion = new ProjectileMotion(angle, initialSpeed)
+    const interval = createProjectileTrajectory(projectileMotion) 
 
     showResults(projectileMotion)
-
-    const interval = createProjectileTrajectory(projectileMotion) 
 
     startButton.disabled = true
 
     setTimeout(() => {
-        startButton.disabled = false
-
         showProjectileAtLastPosition(projectileMotion)
 
+        startButton.disabled = false
         launchedProjectiles.push(JSON.parse(localStorage.getItem('current-trajectory-coords')))
 
         clearInterval(interval)
