@@ -122,7 +122,12 @@ const cleanPropsOfLastTrajectory = () => {
     const scrollContainer = document.querySelector('.scroll-container')
 
     scrollContainer.innerHTML = ''
+}
 
+const hideTimePropsCard = () => {
+    const container = document.querySelector('.info-time')
+
+    container.style.display = 'none'
 }
 
 const createProjectileTrajectory = (projectileMotion, time = 0) => {
@@ -202,4 +207,5 @@ cleanButton.addEventListener('click', () => {
     launchedProjectiles.length = 0
 
     canvasRenderer.reset()
+    hideTimePropsCard()
 })
