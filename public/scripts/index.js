@@ -6,6 +6,7 @@ const cleanButton = document.querySelector('.clean-button')
 
 const angleInput = document.querySelector('#input-angle')
 const initialSpeedInput = document.querySelector("#input-v0")
+const gravityInput = document.querySelector('.contexts')
 
 const resultLabels = {
     maxHeight: document.querySelector('#max-height'),
@@ -183,8 +184,9 @@ startButton.addEventListener('click', event => {
     
     const angle = angleInput.value
     const initialSpeed = initialSpeedInput.value
+    const gravity = gravityInput.options[gravityInput.selectedIndex].value
 
-    const projectileMotion = new ProjectileMotion(angle, initialSpeed)
+    const projectileMotion = new ProjectileMotion(angle, initialSpeed, gravity)
 
     showResults(projectileMotion)
 
