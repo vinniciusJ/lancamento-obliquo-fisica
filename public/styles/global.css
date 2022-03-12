@@ -11,7 +11,7 @@ strong {
     font-weight: 500;
 }
 
-body{
+body {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,7 +20,7 @@ body{
     height: 100vh;
 }
 
-#app{
+#app {
     position: relative;
     
 }
@@ -31,24 +31,47 @@ body{
     border: 2px solid #353233;
     border-radius: 8px;
     width: 320px;
+}
+
+.card.context-card {
+    top: 24px;
+    left: 48px;
+
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.card.context-card .contexts {
+    width: 90%;
     padding: 16px;
+    background-color: #FFF;
+    border: none;
+}
+
+.card.slider-card {
+    padding: 8px;
 }
 
 .card.slider-card:first-of-type {
-    top: 24px;
+    top: 88px;
     left: 48px;
 }
 
 .card.slider-card:nth-of-type(2) {
-    top: 136px;
+    top: 182px;
     left: 48px;
 }
 
 .buttons-container {
     position: absolute;
 
-    top: 256px;
+    top: 280px;
     left: 48px;
+}
+
+.card.info, .card.info-time {
+    padding: 16px;
 }
 
 .card.info {
@@ -61,14 +84,14 @@ body{
 }
 
 .card.info-time {
-    top: 148px;
+    top: 146px;
     right: 48px;
 
     display: none;
 }
 
 .info-time .scroll-container {
-    height: 144px;
+    height: 136px;
     overflow: hidden;
     overflow-y: scroll;
     scrollbar-color: #15CEE2 #FFF;
@@ -89,7 +112,7 @@ body{
     padding: 4px;
     border-radius: 8px;
     display: inline-block;
-    margin: 8px 0;
+    margin: 4px 0;
 }
 
 .info-time p {

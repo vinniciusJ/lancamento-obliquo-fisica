@@ -1,6 +1,6 @@
 const convertDegreesToRadians = degrees => degrees * (Math.PI / 180)
 class ProjectileMotion{
-    static GRAVITY = 9.81
+    static GRAVITY = 24.79
 
     constructor(angle, initialSpeed){
         this.angle = angle
