@@ -1,5 +1,6 @@
-import CanvasRenderer, { colorSchema } from './CanvasRender.js'
+import CanvasRenderer from './CanvasRender.js'
 import ProjectileMotion from './ProjectileMotion.js'
+import context from './context.js'
 
 const startButton = document.querySelector('.shoot-button')
 const cleanButton = document.querySelector('.clean-button')
@@ -23,11 +24,6 @@ const speedLabels = {
     vx: document.querySelector('#vx-arrow'),
     v0y: document.querySelector('#v0y-arrow')
 }
-
-const gravities = { '9.81': 'earth', '1.62': 'moon', '24.79': 'jupter' }
-
-let currentGravity = '9.81'
-let currentColorSchema = colorSchema[gravities[currentGravity]]
 
 const launchedProjectiles = []
 
@@ -61,8 +57,8 @@ const showTrajectory = (coords) => {
     coords.map(coord => {
         const { sx, sy, ex: x, ey: y } = coord
 
-        showProjectileParable({ sx, sy, ex: x, ey: y }, { style: currentColorSchema.primary })
-        showProjectileTrajectory({ x, y }, { style: currentColorSchema.primary  })
+        showProjectileParable({ sx, sy, ex: x, ey: y }, { style: context.colorSchema.primary })
+        showProjectileTrajectory({ x, y }, { style: context.colorSchema.primary  })
     })
 }
 
@@ -81,11 +77,11 @@ const showProjectile = ({ x, y }, { style }) => {
 const showAllLaunchedProjectiles = () => {
     launchedProjectiles.map(projectileCoords => {
         projectileCoords.map(({ sx, sy, ex, ey }, index) => {
-            showProjectileParable({ sx, sy, ex, ey }, { style: currentColorSchema.secondary  })
-            showProjectileTrajectory({ x: ex, y: ey }, { style: currentColorSchema.secondary })
+            showProjectileParable({ sx, sy, ex, ey }, { style: context.colorSchema.secondary })
+            showProjectileTrajectory({ x: ex, y: ey }, { style: context.colorSchema.secondary })
 
             if(projectileCoords.length - 1 == index){
-                showProjectile({ x: ex, y: ey }, { style: currentColorSchema.secondary })
+                showProjectile({ x: ex, y: ey }, { style: context.colorSchema.secondary })
             }
         })
     })
@@ -114,7 +110,7 @@ const showProjectileAtLastPosition = projectileMotion => {
     }
 
     showTrajectory(trajectoryCoords)
-    showProjectile(rectCoords, { style: currentColorSchema.primary }) 
+    showProjectile(rectCoords, { style: context.colorSchema.primary }) 
 
     localStorage.setItem('current-trajectory-coords', JSON.stringify(trajectoryCoords))
 }
@@ -172,7 +168,7 @@ const createProjectileTrajectory = (projectileMotion, time = 0) => {
         }
 
         showTrajectory(trajectoryCoords)
-        showProjectile(rectCoords, { style: currentColorSchema.primary }) 
+        showProjectile(rectCoords, { style: context.colorSchema.primary }) 
 
         localStorage.setItem('current-trajectory-coords', JSON.stringify(trajectoryCoords))
 
@@ -203,11 +199,13 @@ const updateBg = bgName => {
     canvasRenderer.canvas.style.background = `url('images/${bgName}.png')`
 }
 
-startButton.addEventListener('click', event => {
+window.addEventListener('DOMContentLoaded', () => context.currentGravity = 9.81)
+
+startButton.addEventListener('click', () => {
     const angle = angleInput.value
     const initialSpeed = initialSpeedInput.value
 
-    const projectileMotion = new ProjectileMotion(angle, initialSpeed, currentGravity)
+    const projectileMotion = new ProjectileMotion(angle, initialSpeed, context.currentGravity)
 
     cleanPropsOfLastTrajectory()
     showResults(projectileMotion)
@@ -236,12 +234,12 @@ cleanButton.addEventListener('click', () => {
 })
 
 gravityInput.addEventListener('change', () => {
-    currentGravity = gravityInput.options[gravityInput.selectedIndex].value
-    currentColorSchema = colorSchema[gravities[currentGravity]]
-    
+    const gravity = Number(gravityInput.options[gravityInput.selectedIndex].value)
+
+    context.currentGravity = gravity
     launchedProjectiles.length = 0
 
     canvasRenderer.reset()
 
-    updateBg(currentGravity)
+    updateBg(context.currentGravity)
 })

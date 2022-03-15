@@ -1,6 +1,6 @@
 export const CANVAS_WIDTH = 1365
 export const CANVAS_HEIGHT = 638
-
+/*
 export const colorSchema = {
     earth: {
         primary: '#F78154',
@@ -14,7 +14,7 @@ export const colorSchema = {
         primary: '#F78154',
         secondary: '#FFF'
     }
-}
+}*/
 class CanvasRenderer{
     constructor(width, height){
         this.width = width
