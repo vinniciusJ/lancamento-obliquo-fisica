@@ -14,6 +14,11 @@ const resultLabels = {
     flightTime: document.querySelector('#flight-time')
 }
 
+const propsByTimeContainer = {
+    scrollableArea: document.querySelector('.scroll-container'),
+    content: document.querySelector('.info-time')
+}
+
 const speedLabels = {
     vx: document.querySelector('#vx-arrow'),
     v0y: document.querySelector('#v0y-arrow')
@@ -108,8 +113,6 @@ const showProjectileAtLastPosition = projectileMotion => {
         showAllLaunchedProjectiles()
     }
 
-    console.log()
-
     showTrajectory(trajectoryCoords)
     showProjectile(rectCoords, { style: currentColorSchema.primary }) 
 
@@ -117,12 +120,9 @@ const showProjectileAtLastPosition = projectileMotion => {
 }
 
 const showPropsPerSecond = (x, y, vx, vy, time) => {
-    const scrollContainer = document.querySelector('.scroll-container')
-    const container = document.querySelector('.info-time')
+    propsByTimeContainer.content.style.display = 'block'
 
-    container.style.display = 'block'
-
-    scrollContainer.innerHTML += `<div class="time">
+    propsByTimeContainer.scrollableArea.innerHTML += `<div class="time">
         <div class="time-title">Tempo: <span class="time-name">${time / 10}</span>s</div>
         <p></p><strong>X:</strong> <span class="time-X">${x.toFixed(2)}</span> metros</p>
         <p></p><strong>Y:</strong> <span class="time-Y">${y.toFixed(2)}</span> metros</p>
@@ -133,15 +133,11 @@ const showPropsPerSecond = (x, y, vx, vy, time) => {
 }
 
 const cleanPropsOfLastTrajectory = () => {
-    const scrollContainer = document.querySelector('.scroll-container')
-
-    scrollContainer.innerHTML = ''
+    propsByTimeContainer.scrollableArea.innerHTML = ''
 }
 
 const hideTimePropsCard = () => {
-    const container = document.querySelector('.info-time')
-
-    container.style.display = 'none'
+    propsByTimeContainer.content.style.display = 'none'
 }
 
 const createProjectileTrajectory = (projectileMotion, time = 0) => {
