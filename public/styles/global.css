@@ -207,7 +207,7 @@ body {
 }
 
 canvas{
-    background: url('../images/background.png');
+    background: url('../images/9.81.png');
 }
 
 .cannon {
@@ -229,7 +229,7 @@ canvas{
 
 .speed-arrows-container .arrow p{
     position: absolute;
-    background-color: #FFFFFF;
+    background-color: #ffffffa6;
     padding: .25rem;
 
     font-size: 75%;

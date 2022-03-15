@@ -196,6 +196,10 @@ const resetLabels = () => {
     })
 }
 
+const updateBg = bgName => {
+    canvasRenderer.canvas.style.background = `url('images/${bgName}.png')`
+}
+
 startButton.addEventListener('click', event => {
     const angle = angleInput.value
     const initialSpeed = initialSpeedInput.value
@@ -227,4 +231,10 @@ cleanButton.addEventListener('click', () => {
 
     resetLabels()
     hideTimePropsCard()
+})
+
+gravityInput.addEventListener('change', () => {
+    let bgName = gravityInput.options[gravityInput.selectedIndex].value
+
+    updateBg(bgName)
 })
