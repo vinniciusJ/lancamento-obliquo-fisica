@@ -23,6 +23,13 @@ const projectileMotionContext = {
                 ...baseSchema,
                 secondary: '#FFF'
             }
+        },
+        mars: {
+            gravity: 3.71,
+            colorSchema: {
+                primary: '#4aa84c',
+                secondary: '#FFF'
+            }
         }
     }
 }

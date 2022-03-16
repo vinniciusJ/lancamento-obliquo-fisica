@@ -154,8 +154,6 @@ const createProjectileTrajectory = (projectileMotion, time = 0) => {
             const { x, y } = data
             const { vx, vy} = projectileMotion.getSpeedAtTime(time + 1)
 
-            console.log(vx, vy, time + 1)
-
             showPropsPerSecond(x, y, vx, vy, time + 1)
         }
 
