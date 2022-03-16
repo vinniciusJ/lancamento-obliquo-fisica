@@ -247,5 +247,7 @@ gravityInput.addEventListener('change', () => {
 
     canvasRenderer.reset()
 
+    resetLabels()
+    hideTimePropsCard()
     updateBg(context.currentGravity)
 })
