@@ -120,10 +120,16 @@ const showPropsPerSecond = (x, y, vx, vy, time) => {
 
     propsByTimeContainer.scrollableArea.innerHTML += `<div class="time">
         <div class="time-title">Tempo: <span class="time-name">${time / 10}</span>s</div>
-        <p></p><strong>X:</strong> <span class="time-X">${x.toFixed(2)}</span> metros</p>
-        <p></p><strong>Y:</strong> <span class="time-Y">${y.toFixed(2)}</span> metros</p>
+        <div class="time-content">
+        <div>
+        <p></p><strong>X:</strong> <span class="time-X">${x.toFixed(2)}</span> m</p>
+        <p></p><strong>Y:</strong> <span class="time-Y">${y.toFixed(2)}</span> m</p>
+        </div>
+        <div>
         <p></p><strong>Vx:</strong> <span class="time-Vx">${vx.toFixed(2)}</span> m/s</p>
         <p></p><strong>Vy:</strong> <span class="time-Vy">${vy.toFixed(2)}</span> m/s</p>
+        </div>
+        </div>
         </div>
     `
 }
@@ -147,6 +153,8 @@ const createProjectileTrajectory = (projectileMotion, time = 0) => {
         if(Number.isInteger((time + 1) / 10)) {
             const { x, y } = data
             const { vx, vy} = projectileMotion.getSpeedAtTime(time + 1)
+
+            console.log(vx, vy, time + 1)
 
             showPropsPerSecond(x, y, vx, vy, time + 1)
         }

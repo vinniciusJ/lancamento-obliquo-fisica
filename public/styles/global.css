@@ -96,15 +96,18 @@ body {
     top: 146px;
     right: 48px;
 
+    height: 136px;
+
     display: none;
 }
 
 .info-time .scroll-container {
-    height: 136px;
+    height: 96px;
     overflow: hidden;
     overflow-y: scroll;
     scrollbar-color: #15CEE2 #FFF;
 }
+
 
 .info-time .scroll-container::-webkit-scrollbar-thumb {
     background: #15CEE2;
@@ -113,6 +116,13 @@ body {
 
 .info-time .scroll-container::-webkit-scrollbar-track {
     background-color: #FFF;
+}
+
+.time-content{
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0 .5rem;
 }
 
 .info-time .time-title {
@@ -229,7 +239,7 @@ canvas{
 
 .speed-arrows-container .arrow p{
     position: absolute;
-    background-color: #ffffffa6;
+    background-color: #ffffff81;
     padding: .25rem;
 
     font-size: 75%;

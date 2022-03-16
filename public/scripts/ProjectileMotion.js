@@ -30,6 +30,8 @@ export default class ProjectileMotion{
     }
 
     getSpeedAtTime(time){
+        time = time / 10
+
         return {
             vx: this.xInitialSpeed,
             vy: this.yInitialSpeed - this.gravity * time,

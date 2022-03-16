@@ -44,7 +44,6 @@ const handler = {
 
     get: (target, prop) => {
         if(prop == 'currentGravity'){
-            console.log(target.current)
             return target.current.gravity
         }
 

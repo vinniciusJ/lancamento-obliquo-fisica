@@ -8,7 +8,6 @@ const cannonBarrel = document.querySelector('#cannon-barrel')
 
 const canvas = document.querySelector('canvas')
 
-
 const setLaunchAngle = event => {
     const rect = canvas.getBoundingClientRect()
 
@@ -20,6 +19,7 @@ const setLaunchAngle = event => {
     angleLabel.textContent = angle
     cannonBarrel.setAttribute('transform', `rotate(-${angle},17.995497,44.510739)`)
 } 
+
 canvas.addEventListener('mousedown', () => {
     canvas.addEventListener('mousemove', setLaunchAngle)
 })
@@ -27,7 +27,6 @@ canvas.addEventListener('mousedown', () => {
 canvas.addEventListener('mouseup', () => {
     canvas.removeEventListener('mousemove', setLaunchAngle)
 })
-
 
 document.addEventListener("DOMContentLoaded", () => {
     v0Label.textContent = inputV0.value
