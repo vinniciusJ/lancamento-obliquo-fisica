@@ -11,7 +11,7 @@ class CanvasRenderer{
         this.canvas.width = this.width
         this.canvas.height = this.height
 
-        this.context.translate(120, 0)
+        //this.context.translate(120, 0)
 
         this.context.fillStyle = '#000'
         this.context.strokeStyle = '#000'

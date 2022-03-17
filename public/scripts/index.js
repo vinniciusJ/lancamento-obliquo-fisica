@@ -92,7 +92,7 @@ const showProjectileAtLastPosition = projectileMotion => {
     const lastCoord = trajectoryCoords.at(-1)
     
     const data = projectileMotion.getPositionAtTime(projectileMotion.getFlightTime(), { finalTime: true })
-    const rectCoords = { x: data.x * 15, y: ((canvasRenderer.height - 90) - (data.y * 15)) }
+    const rectCoords = { x: 120 + (data.x * 15), y: ((canvasRenderer.height - 90) - (data.y * 15)) }
 
     const currentTrajectory = {
         sx: lastCoord.ex,
@@ -143,12 +143,12 @@ const hideTimePropsCard = () => {
 }
 
 const createProjectileTrajectory = (projectileMotion, time = 0) => {
-    const coords = [{ x: 0, y: canvasRenderer.height - 90 }]
+    const coords = [{ x: 120, y: canvasRenderer.height - 90 }]
     const trajectoryCoords = [ ]
 
     const interval = setInterval(() => {
         const data = projectileMotion.getPositionAtTime(time + 1)
-        const rectCoords = { x: data.x * 15, y: ((canvasRenderer.height - 90) - (data.y * 15)) }
+        const rectCoords = { x: 120 + (data.x * 15), y: ((canvasRenderer.height - 90) - (data.y * 15)) }
 
         if(Number.isInteger((time + 1) / 10)) {
             const { x, y } = data
